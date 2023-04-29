@@ -8,6 +8,11 @@ import { Entry } from '../ui/containers/entry'
 import { Fader } from '../ui/controls/fader/fader'
 import { iconDetails } from '../ui/icons'
 import { Icon } from '../ui/icons/icon'
+import {
+  value_to_db,
+  db_to_value,
+  db_to_string,
+} from '../util/volume-converter'
 
 import { showEntryDialog } from './entry-dialog/entry-dialog'
 
@@ -52,6 +57,9 @@ export function EntryControl({
         color={state.color ?? undefined}
         meterRef={meterRef}
       />
+      <Button onDown={() => change(property, db_to_value(0))}>
+        {db_to_string(value_to_db(state[property] ?? 0) ?? 0, 5)}
+      </Button>
       <Icon
         icon={iconDetails}
         hoverable
