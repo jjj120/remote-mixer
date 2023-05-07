@@ -5,7 +5,7 @@
 /** @type {Partial<import('../backend/src/services/config').RemoteMixerConfiguration>} */
 const userConfig = {
   httpPort: 8080,
-  logLevel: 'debug',
+  // logLevel: 'debug',
   device: 'yamaha-01v96-min'
 }
 
