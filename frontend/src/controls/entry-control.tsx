@@ -57,15 +57,18 @@ export function EntryControl({
         color={state.color ?? undefined}
         meterRef={meterRef}
       />
-      <Button onDown={() => change(property, db_to_value(0))}>
+      <Button
+        onDown={() => change(property, db_to_value(0))}
+        active={(value_to_db(state[property] ?? 0) ?? 0) === 0}
+      >
         {db_to_string(value_to_db(state[property] ?? 0) ?? 0, 5)}
       </Button>
-      <Icon
+      {/* <Icon
         icon={iconDetails}
         hoverable
         padding
         onClick={() => showEntryDialog({ category, id })}
-      />
+      /> */}
     </Entry>
   )
 }

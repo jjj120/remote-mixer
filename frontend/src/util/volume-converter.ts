@@ -311,5 +311,12 @@ export function db_to_string(db: number, len: number): string {
     .padEnd(len, '0')
     .slice(0, len - 1)
 
+  if (db === 10) {
+    return '+10'
+  }
+  if (db >= 0) {
+    return string_to_return.substring(0, string_to_return.length - 1)
+  }
+
   return string_to_return
 }

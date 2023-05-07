@@ -10,6 +10,10 @@ const touchable = css`
   touch-action: none;
 `
 
+const width = css`
+  width: 2.6em;
+`
+
 export type TouchEventListener = (
   e: NormalizedTouchEvent<HTMLDivElement>
 ) => void
@@ -74,7 +78,7 @@ export const Touchable = forwardRef<
 
   return (
     <div
-      className={cx(touchable, className)}
+      className={cx(touchable, width, className)}
       title={title}
       ref={ref}
       onPointerDown={

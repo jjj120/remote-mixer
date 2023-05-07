@@ -79,6 +79,7 @@ export interface ButtonProps {
   transparent?: boolean
   className?: string
   title?: string
+  width?: number
 }
 
 export function Button({
