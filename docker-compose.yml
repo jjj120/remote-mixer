@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+    run:
+        privileged: true
+        ports:
+            - '8000:8000'
+            #- '8080:8080'
+        volumes:
+            - '$(pwd)/config:/usr/src/app/config'
+        image: run
