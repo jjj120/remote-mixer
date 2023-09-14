@@ -8,7 +8,7 @@ import { cx } from '../../../util/styles'
 import { baseline, iconShade, baselinePx } from '../../styles'
 
 export const faderWidth = baselinePx * 12
-export const faderHeight = baselinePx * 60
+export const faderHeight = baselinePx * 120
 export const trackWidth = (baselinePx * 12) / 3
 export const trackHeight = faderHeight - faderWidth
 export const trackMargin = (faderWidth - trackWidth) / 2
