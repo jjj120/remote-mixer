@@ -13,7 +13,7 @@ export default class DummyDeviceController implements DeviceController {
       {
         key: 'ch',
         label: 'Channels',
-        count: 32,
+        count: 16,
         meters: true,
         namePrefix: 'CH',
         faderProperties: [
