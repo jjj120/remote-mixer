@@ -24,6 +24,10 @@ const button = css`
   border-left: none;
   border-right: none;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 `
 
 const button_small = smallText
@@ -70,6 +74,8 @@ export function FaderButton({
         borderBottomColor: color,
         transform: `translateY(${y}px)`,
       }}
+      onTouchStart={event => event.preventDefault()}
+      onTouchStartCapture={event => event.preventDefault()}
     >
       {label}
       {subLabel && <div className={subLabelStyle}>{subLabel}</div>}
