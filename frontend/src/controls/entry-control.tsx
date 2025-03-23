@@ -1,20 +1,22 @@
 import { StateCategoryEntry } from '@remote-mixer/types'
 
 import { sendApiMessage } from '../api/api-wrapper'
-import { useDeviceCategory, useEntryState } from '../api/state'
+import { useDeviceCategory, useDeviceConfiguration, useEntryState } from '../api/state'
 import { useMeter } from '../hooks/meter'
 import { Button } from '../ui/buttons/button'
 import { Entry } from '../ui/containers/entry'
 import { Fader } from '../ui/controls/fader/fader'
-// import { iconDetails } from '../ui/icons'
-// import { Icon } from '../ui/icons/icon'
+import { iconDetails } from '../ui/icons'
+import { Icon } from '../ui/icons/icon'
+
+
 import {
   value_to_db,
   db_to_value,
   db_to_string,
 } from '../util/volume-converter'
 
-// import { showEntryDialog } from './entry-dialog/entry-dialog'
+import { showEntryDialog } from './entry-dialog/entry-dialog'
 
 export interface EntryControlProps {
   category: string
@@ -30,6 +32,9 @@ export function EntryControl({
   const state = useEntryState(category, id) ?? ({} as StateCategoryEntry)
   const categoryInfo = useDeviceCategory(category)
 
+  const configuration = useDeviceConfiguration()
+  const colors = configuration.colors
+
   function change(changedProperty: string, value: any) {
     sendApiMessage({
       type: 'change',
@@ -38,6 +43,16 @@ export function EntryControl({
       property: changedProperty,
       value,
     })
+  }
+
+  function selectColor(stateColor: string | undefined, configColor: string) {
+    if (stateColor) {
+      return stateColor;
+    }
+    if (configColor != "") {
+      return configColor
+    }
+    return undefined
   }
 
   const meterRef = useMeter(categoryInfo, id)
@@ -54,7 +69,7 @@ export function EntryControl({
         step={1}
         label={(categoryInfo.namePrefix ?? '') + id}
         subLabel={state.name}
-        color={state.color ?? undefined}
+        color={selectColor(state.color, colors[id])}
         meterRef={meterRef}
       />
       <Button
@@ -63,12 +78,12 @@ export function EntryControl({
       >
         {db_to_string(value_to_db(state[property] ?? 0) ?? 0, 5)}
       </Button>
-      {/* <Icon
+      {/*<Icon
         icon={iconDetails}
         hoverable
         padding
         onClick={() => showEntryDialog({ category, id })}
-      /> */}
+      />*/}
     </Entry>
   )
 }

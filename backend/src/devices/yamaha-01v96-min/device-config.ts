@@ -37,4 +37,13 @@ export const deviceConfig: DeviceConfiguration = {
       additionalProperties: ['on'],
     },
   ],
+  colors: [
+    "",
+    "",
+    "",
+    "",
+    '#ff4040',
+    '#ffdb29',
+    '#7eff80',
+  ]
 }
